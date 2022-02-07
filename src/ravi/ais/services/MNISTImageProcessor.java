@@ -36,6 +36,22 @@ public class MNISTImageProcessor {
         return Math.sqrt(distance);
     }
 
+    public double computeDistancePredict(double[][] image1Pixels, MNISTImage image2){
+        double distance = 0.0;
+
+
+        double[][] image2Pixels = image2.getPixels();
+
+        for (int i = 0 ; i < MNISTReader.MAX_ROW; i++){
+            for (int j = 0 ; j < MNISTReader.MAX_COL; j++){
+                distance = distance + Math.pow(image2Pixels[i][j] - image1Pixels[i][j],2);
+            }
+
+        }
+
+        return Math.sqrt(distance);
+    }
+
     public MNISTImage computeSD(Double label, List<MNISTImage> images, MNISTImage CentroidImage) {
         MNISTImage SD = new MNISTImage(label, new double[28][28]);
         int size = images.size();

@@ -38,4 +38,23 @@ public class CentroidClassifier {
         }
       return  pimages;
     }
+
+    public int predict( Map<Double, MNISTImage> centroids,double[][] image)
+    {
+        MNISTImageProcessor processor = new MNISTImageProcessor();
+        double[] dist = new double[centroids.size()];
+
+        for (double i = 0.0; i < centroids.size(); i = i + 1.0) {
+
+            double distance = processor.computeDistancePredict(image, centroids.get(i));
+            dist[(int) i] = distance;
+
+        }
+        double min = Arrays.stream(dist).min().orElseThrow();
+        double imin = Arrays.stream(dist).boxed().collect(Collectors.toList()).indexOf(min);
+
+        return (int) imin;
+    }
+
+
 }

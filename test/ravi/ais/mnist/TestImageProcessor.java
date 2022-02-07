@@ -46,11 +46,14 @@ public class TestImageProcessor {
         }
 
 
-
+/*
         System.out.println(centroids.get(1.0));
         System.out.println("SD"+StandardDeviations.get(5.0).getLabel());
         MNISTImageProcessor.displayImage(StandardDeviations.get(5.0));
-        List<MNISTPImage> pimages = new ArrayList<MNISTPImage>();
+
+ */
+
+        List<MNISTPImage> pimages;
 
 
         System.out.println(processor.computeDistance(listOfOnes.get(0), centroidFor1));
@@ -58,6 +61,14 @@ public class TestImageProcessor {
         System.out.println(listOfOnes.get(0));
 
         pimages=classifier.Imageclassifier(StandardDeviations,centroids,images);
+        List<MNISTImage> imagestest = reader.readImages(new File("src/mnist_test.csv"), 11000);
+        int predicted=classifier.predict(centroids,imagestest.get(0).getPixels());
+        System.out.println("The predicted value of the image"+predicted);
+        System.out.println("The real value of the image"+imagestest.get(0).getLabel());
+        System.out.println("Below is the analyzed Image");
+        MNISTImageProcessor.displayPImage(imagestest.get(0).getPixels());
+        System.out.println("\n");
+
 
       /*      for (MNISTImage image : images) {
                 double[] dist = new double[centroids.size()];
@@ -82,13 +93,15 @@ public class TestImageProcessor {
 
             }
       */
-
+/*
         System.out.println(pimages.get(0).getLabel());
         System.out.println(pimages.get(0).getPlabel());
         System.out.println(pimages.get(0).getSDlabel());
         MNISTImageProcessor.displayPImage(pimages.get(0).getPixels());
         MNISTImageProcessor.displayImage(centroids.get(pimages.get(0).getPlabel()));
         MNISTImageProcessor.displayImage(StandardDeviations.get(pimages.get(0).getSDlabel()));
+
+ */
 
         double[][] ConfusionMatrix= new double[10][10];
         double[][] SDConfusionMatrix=new double[10][10];
@@ -108,7 +121,7 @@ public class TestImageProcessor {
         }
         System.out.println(images.size());
         System.out.println("................"+"\n");
-        System.out.println("Confusion Matrix for Centroid Oriented recognization");
+        System.out.println("Self Evaluation Confusion Matrix for Centroid Oriented recognization");
         System.out.println("................"+"\n");
 
 
@@ -128,13 +141,13 @@ public class TestImageProcessor {
         }
 
         System.out.println("................"+"\n");
-        System.out.println("Centroid Oriented Accuracy:"+(CentroidAccuracy/ pimages.size()));
+        System.out.println("Self evaluated Centroid Oriented Accuracy:"+(CentroidAccuracy/ pimages.size()));
         System.out.println("................"+"\n");
 
 
 
         System.out.println("................"+"\n");
-        System.out.println("Confusion Matrix for Standard deviation oriented recognization");
+        System.out.println("Self Analyzed Confusion Matrix for Standard deviation oriented recognization");
         System.out.println("................"+"\n");
 
         double SDAccuracy= 0.0;
@@ -154,8 +167,9 @@ public class TestImageProcessor {
         }
 
         System.out.println("................"+"\n");
-        System.out.println("StandardDeviation Oriented Accuracy:"+(SDAccuracy/ pimages.size()));
+        System.out.println("Self evaluated StandardDeviation Oriented Accuracy:"+(SDAccuracy/ pimages.size()));
         System.out.println("................"+"\n");
 
     }
+
 }
