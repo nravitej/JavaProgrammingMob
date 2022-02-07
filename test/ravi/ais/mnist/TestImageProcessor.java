@@ -17,7 +17,7 @@ public class TestImageProcessor {
         MNISTImageProcessor processor = new MNISTImageProcessor();
         CentroidClassifier classifier=new CentroidClassifier();
         MNISTReader reader = new MNISTReader();
-        List<MNISTImage> images = reader.readImages(new File("src/mnist_train.csv"), 70000);
+        List<MNISTImage> images = reader.readImages(new File("src/mnist_train.csv"), 10000);
 
         Map<Double, List<MNISTImage>> imagesByLabel = images.stream().collect(Collectors.groupingBy(MNISTImage::getLabel));
         //System.out.println(imagesByLabel);
@@ -59,9 +59,9 @@ public class TestImageProcessor {
         System.out.println(processor.computeDistance(listOfOnes.get(0), centroidFor1));
         System.out.println(processor.computeDistance(listOfZeros.get(0), centroidFor1));
         System.out.println(listOfOnes.get(0));
-
-        pimages=classifier.Imageclassifier(StandardDeviations,centroids,images);
         List<MNISTImage> imagestest = reader.readImages(new File("src/mnist_test.csv"), 11000);
+        pimages=classifier.Imageclassifier(StandardDeviations,centroids,imagestest);
+
         int predicted=classifier.predict(centroids,imagestest.get(0).getPixels());
         System.out.println("The predicted value of the image"+predicted);
         System.out.println("The real value of the image"+imagestest.get(0).getLabel());

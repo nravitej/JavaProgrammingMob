@@ -28,7 +28,9 @@ public class MNISTImageProcessor {
 
         for (int i = 0 ; i < MNISTReader.MAX_ROW; i++){
             for (int j = 0 ; j < MNISTReader.MAX_COL; j++){
-                distance = distance + Math.pow(image2Pixels[i][j] - image1Pixels[i][j],2);
+
+                    distance = distance + Math.pow(image2Pixels[i][j] - image1Pixels[i][j], 2);
+
             }
 
         }
