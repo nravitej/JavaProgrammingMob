@@ -64,7 +64,7 @@ public class TestImageProcessor {
         //System.out.println(processor.computeDistance(listOfOnes.get(0), centroidFor1));
         //System.out.println(processor.computeDistance(listOfZeros.get(0), centroidFor1));
         System.out.println(listOfOnes.get(0));
-        List<MNISTImage> imagestest = reader.readImages(new File("src/mnist_test.csv"), 11000);
+        List<MNISTImage> imagestest = reader.readImages(new File("src/mnist_train.csv"), 11000);
 
 
         //Calling the Image classifier function
